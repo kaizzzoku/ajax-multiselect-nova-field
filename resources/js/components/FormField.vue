@@ -13,6 +13,9 @@
           :loading="isLoading"
           :multiple="true"
           @search-change="getOptions"
+
+          :taggable="true"
+          @tag="addTag"
         />
       </div>
     </template>
@@ -76,6 +79,16 @@ export default {
             this.isLoading = false;
           })}, 400)
       }
+    },
+
+    addTag(newTag) {
+      const tag = {
+        name: newTag,
+        code: "new_" + Math.random().toString(36).substr(2, 9),
+      }
+
+      this.options.push(tag);
+      this.value.push(tag);
     }
   },
 }
