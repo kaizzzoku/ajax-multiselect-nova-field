@@ -84,7 +84,7 @@ export default {
     addTag(newTag) {
       const tag = {
         name: newTag,
-        code: "new_" + Math.random().toString(36).substr(2, 9),
+        code: newTag,
       }
 
       this.options.push(tag);
