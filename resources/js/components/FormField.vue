@@ -82,13 +82,27 @@ export default {
     },
 
     addTag(newTag) {
-      const tag = {
-        name: newTag,
-        code: newTag,
-      }
 
-      this.options.push(tag);
-      this.value.push(tag);
+      if (this.field.modelClass === "App\\Models\\Tag") {
+
+        let already_used = false;
+        
+        for (let val in this.value) {
+          if (this.value[val].name === newTag) {
+            already_used = true;
+          };
+        }
+
+        if (!already_used) {
+          const tag = {
+            name: newTag,
+            id: newTag,
+          }
+
+          this.value.push(tag);
+        };
+      };
+
     }
   },
 }
